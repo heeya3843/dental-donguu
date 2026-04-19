@@ -9,165 +9,162 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
-      background: linear-gradient(160deg, #e0f7fa 0%, #f1f8e9 100%);
-      min-height: 100vh; color: #1a2a3a;
+      background: #f0f7f5;
+      color: #1a2a3a;
+      min-height: 100vh;
     }
 
     /* ── 헤더 ── */
     header {
       background: linear-gradient(135deg, #00796b, #00897b, #26a69a);
-      color: #fff; text-align: center; padding: 22px 20px 18px;
+      color: #fff; text-align: center; padding: 24px 20px 20px;
     }
-    .header-emoji { font-size: 2.4rem; }
-    header h1 { font-size: 1.2rem; font-weight: 800; margin-top: 6px; letter-spacing: -0.3px; }
-    header p  { font-size: 0.8rem; opacity: 0.85; margin-top: 4px; }
+    .header-emoji { font-size: 2.6rem; }
+    header h1 { font-size: 1.15rem; font-weight: 800; margin-top: 8px; line-height: 1.4; }
+    header p  { font-size: 0.8rem; opacity: 0.85; margin-top: 6px; }
     .org-badge {
       display: inline-block; background: rgba(255,255,255,0.2);
-      border-radius: 20px; padding: 3px 14px; font-size: 0.75rem;
-      font-weight: 600; margin-top: 8px;
+      border-radius: 20px; padding: 4px 16px; font-size: 0.75rem;
+      font-weight: 600; margin-top: 10px;
     }
 
-    /* ── 진행 바 ── */
-    .progress-wrap { background: rgba(0,0,0,0.15); height: 6px; }
-    .progress-bar  {
-      height: 100%; background: #ffeb3b;
-      transition: width 0.4s ease; border-radius: 0 3px 3px 0;
-    }
-    .step-labels {
-      display: flex; justify-content: space-between;
-      padding: 6px 16px 0; max-width: 600px; margin: 0 auto;
-    }
-    .step-label {
-      font-size: 0.65rem; color: rgba(255,255,255,0.7);
-      font-weight: 600; text-align: center;
-    }
-    .step-label.active { color: #ffeb3b; }
+    /* ── 메인 ── */
+    .main { max-width: 620px; margin: 0 auto; padding: 20px 16px 40px; }
 
-    /* ── 메인 카드 ── */
-    .main { max-width: 600px; margin: 0 auto; padding: 20px 16px 40px; }
+    /* ── 섹션 카드 ── */
     .card {
-      background: #fff; border-radius: 18px; padding: 26px 22px;
-      box-shadow: 0 4px 20px rgba(0,121,107,0.12);
-      display: none;
+      background: #fff; border-radius: 16px; padding: 22px 20px;
+      box-shadow: 0 2px 14px rgba(0,121,107,0.09);
+      margin-bottom: 14px;
     }
-    .card.active { display: block; }
     .card-title {
-      font-size: 1rem; font-weight: 800; color: #00695c;
-      margin-bottom: 6px; display: flex; align-items: center; gap: 8px;
+      font-size: 0.95rem; font-weight: 800; color: #00695c;
+      margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+      padding-bottom: 10px; border-bottom: 2px solid #e0f2f1;
     }
-    .card-sub { font-size: 0.8rem; color: #6a8a7a; margin-bottom: 20px; }
 
     /* ── 프로그램 선택 ── */
-    .prog-options { display: flex; flex-direction: column; gap: 10px; }
-    .prog-option {
-      border: 2px solid #b2dfdb; border-radius: 12px; padding: 16px;
-      cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 12px;
+    .prog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .prog-btn {
+      border: 2px solid #b2dfdb; border-radius: 12px; padding: 16px 10px;
+      text-align: center; cursor: pointer; transition: all 0.2s; background: #fff;
     }
-    .prog-option:hover { border-color: #00897b; background: #f0faf8; }
-    .prog-option.selected { border-color: #00796b; background: #e0f2f1; }
-    .prog-option input[type="radio"] { display: none; }
-    .prog-icon { font-size: 1.8rem; flex-shrink: 0; }
-    .prog-name { font-size: 0.92rem; font-weight: 700; color: #00695c; }
-    .prog-desc { font-size: 0.75rem; color: #6a8a7a; margin-top: 2px; }
+    .prog-btn:hover   { border-color: #00897b; background: #f0faf8; }
+    .prog-btn.sel     { border-color: #00796b; background: #e0f2f1; }
+    .prog-btn .pi     { font-size: 1.8rem; display: block; margin-bottom: 6px; }
+    .prog-btn .pn     { font-size: 0.82rem; font-weight: 700; color: #00695c; line-height: 1.4; }
 
     /* ── 참여자 구분 ── */
-    .type-options { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .type-grid { display: flex; gap: 10px; }
     .type-btn {
-      flex: 1; min-width: 80px; border: 2px solid #b2dfdb; border-radius: 10px;
-      padding: 12px 8px; text-align: center; cursor: pointer; transition: all 0.2s;
-      font-size: 0.88rem; font-weight: 700; color: #00695c; background: #fff;
-    }
-    .type-btn:hover   { border-color: #00897b; background: #f0faf8; }
-    .type-btn.selected { border-color: #00796b; background: #e0f2f1; }
-    .type-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
-
-    /* ── 설문 문항 (리커트) ── */
-    .q-block { margin-bottom: 22px; padding-bottom: 18px; border-bottom: 1px solid #f0f5f3; }
-    .q-block:last-child { border-bottom: none; margin-bottom: 0; }
-    .q-num  { font-size: 0.7rem; color: #00897b; font-weight: 700; margin-bottom: 4px; }
-    .q-text { font-size: 0.9rem; font-weight: 700; color: #1a2a3a; margin-bottom: 12px; line-height: 1.5; }
-    .likert { display: flex; gap: 6px; }
-    .likert-btn {
-      flex: 1; border: 1.5px solid #b2dfdb; border-radius: 8px;
-      padding: 8px 4px; text-align: center; cursor: pointer;
+      flex: 1; border: 2px solid #b2dfdb; border-radius: 10px;
+      padding: 14px 8px; text-align: center; cursor: pointer;
       transition: all 0.2s; background: #fff;
     }
-    .likert-btn:hover { border-color: #00897b; background: #f0faf8; }
-    .likert-btn.selected { border-color: #00796b; background: #00796b; color: #fff; }
-    .likert-btn .l-num  { font-size: 0.88rem; font-weight: 800; display: block; }
-    .likert-btn .l-txt  { font-size: 0.6rem; font-weight: 600; display: block; margin-top: 2px; line-height: 1.3; }
-    .likert-btn.selected .l-txt { color: rgba(255,255,255,0.85); }
+    .type-btn:hover { border-color: #00897b; background: #f0faf8; }
+    .type-btn.sel   { border-color: #00796b; background: #e0f2f1; }
+    .type-btn .ti   { font-size: 1.6rem; display: block; margin-bottom: 4px; }
+    .type-btn .tn   { font-size: 0.85rem; font-weight: 700; color: #00695c; }
+
+    /* ── 문항 ── */
+    .q-item { margin-bottom: 20px; }
+    .q-item:last-child { margin-bottom: 0; }
+    .q-label {
+      font-size: 0.88rem; font-weight: 700; color: #1a2a3a;
+      margin-bottom: 10px; line-height: 1.5;
+      display: flex; gap: 8px;
+    }
+    .q-no {
+      background: #00796b; color: #fff; border-radius: 50%;
+      width: 22px; height: 22px; display: flex; align-items: center;
+      justify-content: center; font-size: 0.7rem; font-weight: 800;
+      flex-shrink: 0; margin-top: 1px;
+    }
+
+    /* ── 리커트 버튼 ── */
+    .likert { display: flex; gap: 6px; }
+    .l-btn {
+      flex: 1; border: 1.5px solid #b2dfdb; border-radius: 8px;
+      padding: 9px 4px; text-align: center; cursor: pointer;
+      transition: all 0.18s; background: #fff; user-select: none;
+    }
+    .l-btn:hover { border-color: #00897b; background: #f0faf8; }
+    .l-btn.sel   { border-color: #00796b; background: #00796b; color: #fff; }
+    .l-btn .ln   { font-size: 0.9rem; font-weight: 800; display: block; }
+    .l-btn .lt   { font-size: 0.58rem; font-weight: 600; display: block; margin-top: 2px; line-height: 1.3; color: #6a8a7a; }
+    .l-btn.sel .lt { color: rgba(255,255,255,0.8); }
 
     /* ── 주관식 ── */
-    .opinion-area {
-      width: 100%; min-height: 140px; padding: 14px;
-      border: 1.5px solid #b2dfdb; border-radius: 12px;
+    .opinion-box {
+      width: 100%; min-height: 120px; padding: 14px;
+      border: 1.5px solid #b2dfdb; border-radius: 10px;
       font-size: 0.9rem; font-family: inherit; resize: vertical;
       outline: none; transition: border 0.2s; line-height: 1.7;
     }
-    .opinion-area:focus { border-color: #00796b; }
-    .opinion-area::placeholder { color: #aabfb8; }
+    .opinion-box:focus { border-color: #00796b; }
+    .opinion-box::placeholder { color: #aabfb8; }
 
-    /* ── 섹션 라벨 ── */
-    .section-label {
-      background: #e0f2f1; border-radius: 8px; padding: 8px 14px;
-      font-size: 0.78rem; font-weight: 700; color: #00695c;
-      margin-bottom: 16px; display: flex; align-items: center; gap: 6px;
+    /* ── 제출 버튼 ── */
+    .submit-btn {
+      width: 100%; padding: 16px; margin-top: 6px;
+      background: linear-gradient(135deg, #00796b, #00695c);
+      color: #fff; border: none; border-radius: 12px;
+      font-size: 1.05rem; font-weight: 800; cursor: pointer;
+      font-family: inherit; letter-spacing: 0.3px;
+      transition: opacity 0.2s, transform 0.1s;
+      box-shadow: 0 4px 14px rgba(0,121,107,0.3);
     }
-
-    /* ── 버튼 ── */
-    .btn-row { display: flex; gap: 10px; margin-top: 24px; }
-    .btn-prev {
-      padding: 13px 20px; background: none; border: 1.5px solid #b2dfdb;
-      border-radius: 10px; color: #00695c; font-size: 0.9rem;
-      font-weight: 700; cursor: pointer; font-family: inherit; transition: all 0.2s;
-    }
-    .btn-prev:hover { background: #f0faf8; }
-    .btn-next {
-      flex: 1; padding: 13px; background: linear-gradient(135deg, #00796b, #00695c);
-      color: #fff; border: none; border-radius: 10px; font-size: 0.95rem;
-      font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.2s;
-    }
-    .btn-next:hover { opacity: 0.88; }
+    .submit-btn:hover  { opacity: 0.9; }
+    .submit-btn:active { transform: scale(0.98); }
 
     /* ── 완료 화면 ── */
-    .done-card { text-align: center; }
+    .done-wrap {
+      display: none; max-width: 620px; margin: 20px auto;
+      padding: 0 16px;
+    }
+    .done-wrap.show { display: block; }
+    .done-card {
+      background: #fff; border-radius: 16px; padding: 36px 24px;
+      text-align: center; box-shadow: 0 2px 14px rgba(0,121,107,0.09);
+    }
     .done-emoji { font-size: 3.5rem; margin-bottom: 14px; }
     .done-card h2 { font-size: 1.2rem; font-weight: 800; color: #00695c; margin-bottom: 8px; }
-    .done-card p  { font-size: 0.88rem; color: #5a7a6a; line-height: 1.7; margin-bottom: 20px; }
-    .done-box {
-      background: #e0f2f1; border-radius: 12px; padding: 14px 16px;
+    .done-card p  { font-size: 0.88rem; color: #5a7a6a; line-height: 1.8; margin-bottom: 20px; }
+    .done-info {
+      background: #e0f2f1; border-radius: 10px; padding: 14px 18px;
       font-size: 0.83rem; color: #00695c; font-weight: 600;
-      text-align: left; margin-bottom: 20px; line-height: 1.9;
+      text-align: left; margin-bottom: 22px; line-height: 2;
     }
-    .btn-again {
-      width: 100%; padding: 13px; background: linear-gradient(135deg, #00796b, #00695c);
-      color: #fff; border: none; border-radius: 10px; font-size: 0.95rem;
-      font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.2s;
+    .again-btn {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, #00796b, #00695c);
+      color: #fff; border: none; border-radius: 10px;
+      font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: opacity 0.2s;
     }
-    .btn-again:hover { opacity: 0.88; }
+    .again-btn:hover { opacity: 0.88; }
 
     /* ── 관리자 ── */
-    .admin-wrap { max-width: 700px; margin: 24px auto 0; padding: 0 16px 40px; }
+    .admin-wrap { max-width: 720px; margin: 24px auto 0; padding: 0 16px 50px; }
     .admin-toggle {
       background: none; border: 1.5px solid #80cbc4; border-radius: 8px;
       padding: 9px 18px; font-size: 0.82rem; color: #00695c;
-      cursor: pointer; font-family: inherit; font-weight: 600; transition: all 0.2s;
+      cursor: pointer; font-family: inherit; font-weight: 600;
     }
-    .admin-toggle:hover { border-color: #00796b; background: #e0f2f1; }
+    .admin-toggle:hover { background: #e0f2f1; }
     .admin-panel {
       display: none; background: #fff; border-radius: 14px;
       padding: 22px; margin-top: 12px;
-      box-shadow: 0 4px 20px rgba(0,121,107,0.10);
+      box-shadow: 0 2px 14px rgba(0,121,107,0.09);
     }
     .admin-panel.open { display: block; }
-    .pw-area { display: flex; gap: 8px; margin-bottom: 16px; }
-    .pw-area input {
+    .pw-row { display: flex; gap: 8px; margin-bottom: 16px; }
+    .pw-row input {
       flex: 1; padding: 10px 12px; border: 1.5px solid #b2dfdb;
       border-radius: 8px; font-size: 0.9rem; font-family: inherit; outline: none;
     }
-    .pw-area input:focus { border-color: #00796b; }
-    .pw-btn {
+    .pw-row input:focus { border-color: #00796b; }
+    .pw-ok {
       padding: 10px 18px; background: #00796b; color: #fff;
       border: none; border-radius: 8px; font-size: 0.88rem;
       font-weight: 600; cursor: pointer; font-family: inherit;
@@ -175,62 +172,66 @@
     .result-area { display: none; }
     .result-area.open { display: block; }
 
-    /* ── 통계 카드 ── */
-    .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 18px; }
+    .stat-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
     .stat-box {
       background: #e0f2f1; border-radius: 10px; padding: 14px;
       text-align: center; border: 1px solid #b2dfdb;
     }
-    .stat-box .si { font-size: 1.4rem; }
-    .stat-box .sv { font-size: 1.5rem; font-weight: 800; color: #00695c; margin: 4px 0 2px; }
+    .stat-box .si { font-size: 1.3rem; }
+    .stat-box .sv { font-size: 1.4rem; font-weight: 800; color: #00695c; margin: 4px 0 2px; }
     .stat-box .sl { font-size: 0.7rem; color: #5a8a7a; font-weight: 600; }
 
-    /* ── 차트 ── */
-    .chart-block { margin-bottom: 18px; }
-    .chart-label {
+    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+    .score-card {
+      background: #f0faf8; border: 1px solid #b2dfdb;
+      border-radius: 10px; padding: 11px 12px;
+    }
+    .score-card .sc-l { font-size: 0.7rem; color: #5a8a7a; font-weight: 600; margin-bottom: 3px; }
+    .score-card .sc-v { font-size: 1.3rem; font-weight: 800; color: #00695c; }
+    .score-card .sc-m { font-size: 0.68rem; color: #90a4ae; }
+
+    .a-chart-lbl {
       font-size: 0.82rem; font-weight: 700; color: #00695c;
       margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
     }
-    .chart-label::before {
+    .a-chart-lbl::before {
       content: ''; width: 3px; height: 14px;
       background: #00796b; border-radius: 2px; display: inline-block;
     }
-    .bar-row2 { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font-size: 0.78rem; }
-    .bar-lbl2 { width: 100px; color: #5a7a6a; font-weight: 600; flex-shrink: 0; text-align: right; }
-    .bar-trk2 { flex: 1; background: #e0f2f1; border-radius: 4px; height: 20px; overflow: hidden; }
-    .bar-fil2 {
+    .br2 { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-size: 0.78rem; }
+    .bl2 { width: 110px; color: #5a7a6a; font-weight: 600; flex-shrink: 0; text-align: right; }
+    .bt2 { flex: 1; background: #e0f2f1; border-radius: 4px; height: 20px; overflow: hidden; }
+    .bf2 {
       height: 100%; border-radius: 4px;
       background: linear-gradient(90deg, #00796b, #4db6ac);
-      display: flex; align-items: center; justify-content: flex-end; padding-right: 6px;
-      transition: width 0.5s ease;
+      display: flex; align-items: center; justify-content: flex-end;
+      padding-right: 6px; transition: width 0.5s;
     }
-    .bar-fil2 span { font-size: 0.68rem; color: #fff; font-weight: 700; }
-    .bar-cnt2 { width: 24px; color: #00695c; font-weight: 700; flex-shrink: 0; }
+    .bf2 span { font-size: 0.68rem; color: #fff; font-weight: 700; }
+    .bc2 { width: 24px; color: #00695c; font-weight: 700; flex-shrink: 0; }
 
-    /* ── 응답 테이블 ── */
-    .tbl-scroll { overflow-x: auto; margin-top: 14px; }
-    .resp-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; min-width: 600px; }
-    .resp-table th {
+    .chart-block { margin-bottom: 16px; }
+
+    .tbl-scroll { overflow-x: auto; margin-top: 12px; }
+    .rt { width: 100%; border-collapse: collapse; font-size: 0.76rem; min-width: 560px; }
+    .rt th {
       background: #e0f2f1; color: #00695c; padding: 8px 10px;
       text-align: left; font-weight: 700;
     }
-    .resp-table td { padding: 8px 10px; border-bottom: 1px solid #e8f5f3; color: #2c3e50; }
-    .resp-table tr:last-child td { border-bottom: none; }
-    .resp-table tr:hover td { background: #f5faf8; }
+    .rt td { padding: 8px 10px; border-bottom: 1px solid #e0f2f1; }
+    .rt tr:last-child td { border-bottom: none; }
+    .rt tr:hover td { background: #f5faf8; }
     .no-data { text-align: center; color: #90a4ae; padding: 24px; font-size: 0.88rem; }
     .del-btn {
       background: none; border: 1px solid #ffcdd2; color: #e53935;
-      border-radius: 5px; padding: 2px 8px; font-size: 0.72rem;
-      cursor: pointer; font-family: inherit;
+      border-radius: 5px; padding: 2px 8px; font-size: 0.72rem; cursor: pointer;
     }
-    .del-btn:hover { background: #ffebee; }
 
-    /* ── 하단 버튼 ── */
     .admin-btns { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
     .xl-btn {
       padding: 9px 18px; background: linear-gradient(135deg, #1b5e20, #2e7d32);
       color: #fff; border: none; border-radius: 8px; font-size: 0.85rem;
-      font-weight: 700; cursor: pointer; font-family: inherit; transition: opacity 0.2s;
+      font-weight: 700; cursor: pointer; font-family: inherit;
     }
     .xl-btn:hover { opacity: 0.88; }
     .clr-btn {
@@ -240,29 +241,21 @@
     }
     .clr-btn:hover { background: #ffebee; }
 
-    /* ── 평균 점수 표시 ── */
-    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-    .score-card {
-      background: #f0faf8; border: 1px solid #b2dfdb;
-      border-radius: 10px; padding: 12px;
-    }
-    .score-card .sc-lbl { font-size: 0.7rem; color: #5a8a7a; font-weight: 600; margin-bottom: 4px; }
-    .score-card .sc-val {
-      font-size: 1.4rem; font-weight: 800; color: #00695c;
-    }
-    .score-card .sc-max { font-size: 0.7rem; color: #90a4ae; }
-    .star { color: #ffc107; }
+    /* 필수 표시 */
+    .req { color: #e53935; }
+    .section-sub { font-size: 0.75rem; color: #6a8a7a; margin-bottom: 14px; }
 
     footer {
       text-align: center; padding: 16px; font-size: 0.75rem;
-      color: #5a8a7a; margin-top: 10px;
+      color: #5a8a7a;
     }
 
     @media (max-width: 480px) {
+      .prog-grid { grid-template-columns: 1fr; }
       .likert { gap: 4px; }
-      .likert-btn .l-txt { font-size: 0.55rem; }
-      .stat-row { grid-template-columns: 1fr 1fr; }
+      .l-btn .lt { font-size: 0.52rem; }
       .score-grid { grid-template-columns: 1fr; }
+      .stat-row { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
@@ -271,159 +264,118 @@
 <!-- 헤더 -->
 <header>
   <div class="header-emoji">🦷</div>
-  <h1>어린이 구강보건 프로그램 만족도 조사</h1>
+  <h1>어린이 구강보건 프로그램<br>만족도 조사</h1>
   <p>소중한 의견을 남겨주세요! 더 나은 프로그램을 만드는 데 활용됩니다.</p>
   <div class="org-badge">🏥 동구보건소</div>
-  <div class="progress-wrap" style="margin-top:14px;">
-    <div class="progress-bar" id="progressBar" style="width:25%"></div>
-  </div>
-  <div class="step-labels">
-    <span class="step-label active" id="sl1">① 기본정보</span>
-    <span class="step-label" id="sl2">② 만족도</span>
-    <span class="step-label" id="sl3">③ 사전·사후</span>
-    <span class="step-label" id="sl4">④ 의견</span>
-  </div>
 </header>
 
-<div class="main">
+<!-- 설문 폼 -->
+<div class="main" id="surveyMain">
 
-  <!-- ══ STEP 1: 기본정보 ══ -->
-  <div class="card active" id="step1">
+  <!-- 1. 기본정보 -->
+  <div class="card">
     <div class="card-title">📋 기본 정보</div>
-    <div class="card-sub">참여하신 프로그램과 참여자 구분을 선택해주세요.</div>
 
-    <div class="section-label">🎯 참여 프로그램 선택 <span style="color:#e53935;">*</span></div>
-    <div class="prog-options">
-      <label class="prog-option" id="prog1" onclick="selectProg('A')">
-        <input type="radio" name="prog" value="A" />
-        <span class="prog-icon">🎭</span>
-        <div>
-          <div class="prog-name">어린이 구강연극 프로그램</div>
-          <div class="prog-desc">구강건강을 주제로 한 어린이 연극 교육</div>
-        </div>
-      </label>
-      <label class="prog-option" id="prog2" onclick="selectProg('B')">
-        <input type="radio" name="prog" value="B" />
-        <span class="prog-icon">🏥</span>
-        <div>
-          <div class="prog-name">보건소 구강보건교육 프로그램</div>
-          <div class="prog-desc">동구보건소 전문가 구강건강 교육</div>
-        </div>
-      </label>
-    </div>
-
-    <div class="section-label" style="margin-top:20px;">👤 참여자 구분 <span style="color:#e53935;">*</span></div>
-    <div class="type-options">
-      <div class="type-btn" id="type1" onclick="selectType('교사')">
-        <span class="type-icon">👩‍🏫</span>교사
+    <div style="margin-bottom:16px;">
+      <div style="font-size:0.85rem;font-weight:700;color:#00695c;margin-bottom:10px;">
+        🎯 참여 프로그램 <span class="req">*</span>
       </div>
-      <div class="type-btn" id="type2" onclick="selectType('학부모')">
-        <span class="type-icon">👨‍👩‍👧</span>학부모
-      </div>
-      <div class="type-btn" id="type3" onclick="selectType('기타')">
-        <span class="type-icon">👤</span>기타
+      <div class="prog-grid">
+        <div class="prog-btn" id="pA" onclick="selProg('A')">
+          <span class="pi">🎭</span>
+          <span class="pn">어린이<br>구강연극 프로그램</span>
+        </div>
+        <div class="prog-btn" id="pB" onclick="selProg('B')">
+          <span class="pi">🏥</span>
+          <span class="pn">보건소<br>구강보건교육 프로그램</span>
+        </div>
       </div>
     </div>
 
-    <div class="btn-row">
-      <button class="btn-next" onclick="goStep(2)">다음 단계 →</button>
+    <div>
+      <div style="font-size:0.85rem;font-weight:700;color:#00695c;margin-bottom:10px;">
+        👤 참여자 구분 <span class="req">*</span>
+      </div>
+      <div class="type-grid">
+        <div class="type-btn" id="t1" onclick="selType('교사')">
+          <span class="ti">👩‍🏫</span><span class="tn">교사</span>
+        </div>
+        <div class="type-btn" id="t2" onclick="selType('학부모')">
+          <span class="ti">👨‍👩‍👧</span><span class="tn">학부모</span>
+        </div>
+        <div class="type-btn" id="t3" onclick="selType('기타')">
+          <span class="ti">👤</span><span class="tn">기타</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ══ STEP 2: 프로그램 만족도 ══ -->
-  <div class="card" id="step2">
+  <!-- 2. 만족도 -->
+  <div class="card">
     <div class="card-title">⭐ 프로그램 만족도</div>
-    <div class="card-sub">각 문항에 대해 해당하는 점수를 선택해주세요. (1점: 매우 불만족 ~ 5점: 매우 만족)</div>
-
-    <div class="section-label">📊 만족도 평가 (5점 척도)</div>
-
-    <div id="sat-questions">
-      <!-- JS로 생성 -->
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-prev" onclick="goStep(1)">← 이전</button>
-      <button class="btn-next" onclick="goStep(3)">다음 단계 →</button>
-    </div>
+    <div class="section-sub">각 문항에 해당하는 점수를 선택해주세요. (1점: 매우 그렇지 않다 ~ 5점: 매우 그렇다)</div>
+    <div id="satWrap"></div>
   </div>
 
-  <!-- ══ STEP 3: 사전·사후 비교 ══ -->
-  <div class="card" id="step3">
+  <!-- 3. 사전사후 비교 -->
+  <div class="card">
     <div class="card-title">📈 프로그램 전·후 비교</div>
-    <div class="card-sub">프로그램 참여 전과 비교하여 어린이 구강관리에 어떤 변화가 있었는지 평가해주세요.</div>
-
-    <div class="section-label">🔍 사전·사후 변화 평가 (5점 척도)</div>
-
-    <div id="comp-questions">
-      <!-- JS로 생성 -->
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-prev" onclick="goStep(2)">← 이전</button>
-      <button class="btn-next" onclick="goStep(4)">다음 단계 →</button>
-    </div>
+    <div class="section-sub">프로그램 참여 전과 비교하여 어린이 구강관리에 어떤 변화가 있었는지 선택해주세요.</div>
+    <div id="compWrap"></div>
   </div>
 
-  <!-- ══ STEP 4: 의견수렴 ══ -->
-  <div class="card" id="step4">
-    <div class="card-title">💬 자유 의견</div>
-    <div class="card-sub">프로그램에 대한 자유로운 의견을 남겨주세요. (선택사항)</div>
-
-    <div class="section-label">✏️ 의견 및 건의사항</div>
-
-    <textarea class="opinion-area" id="opinionText"
-      placeholder="프로그램 개선을 위한 건의사항, 좋았던 점, 아쉬웠던 점 등 자유롭게 작성해주세요."></textarea>
-
-    <div style="font-size:0.75rem;color:#90a4ae;margin-top:6px;text-align:right;">
-      <span id="opinionCount">0</span>자
-    </div>
-
-    <div class="btn-row">
-      <button class="btn-prev" onclick="goStep(3)">← 이전</button>
-      <button class="btn-next" onclick="submitSurvey()">✅ 제출하기</button>
-    </div>
+  <!-- 4. 자유의견 -->
+  <div class="card">
+    <div class="card-title">💬 자유 의견 <span style="font-size:0.75rem;color:#90a4ae;font-weight:400;">(선택사항)</span></div>
+    <textarea class="opinion-box" id="opinionTxt"
+      placeholder="프로그램 개선을 위한 건의사항, 좋았던 점, 아쉬웠던 점 등을 자유롭게 작성해주세요."></textarea>
   </div>
 
-  <!-- ══ 완료 화면 ══ -->
-  <div class="card done-card" id="stepDone">
+  <!-- 제출 -->
+  <button class="submit-btn" onclick="submit()">✅ 설문 제출하기</button>
+
+</div>
+
+<!-- 완료 화면 -->
+<div class="done-wrap" id="doneWrap">
+  <div class="done-card">
     <div class="done-emoji">🎉</div>
     <h2>설문이 완료되었습니다!</h2>
     <p>소중한 의견 감사합니다.<br>더 나은 어린이 구강보건 프로그램을 위해 활용하겠습니다.</p>
-    <div class="done-box">
+    <div class="done-info">
       🏥 동구보건소 구강보건팀<br>
       📞 052-209-6937<br>
       🦷 어린이 구강건강을 위해 함께해 주셔서 감사합니다!
     </div>
-    <button class="btn-again" onclick="resetSurvey()">📝 다른 분 설문하기</button>
+    <button class="again-btn" onclick="reset()">📝 다른 분 설문하기</button>
   </div>
-
-</div><!-- .main -->
+</div>
 
 <!-- 관리자 -->
 <div class="admin-wrap">
   <button class="admin-toggle" onclick="toggleAdmin()">🔐 관리자 결과 확인</button>
   <div class="admin-panel" id="adminPanel">
     <div style="font-size:0.95rem;font-weight:700;color:#00695c;margin-bottom:12px;">📊 설문 결과 관리</div>
-    <div class="pw-area">
-      <input type="password" id="pwInput" placeholder="관리자 비밀번호 입력"
+    <div class="pw-row">
+      <input type="password" id="pwInput" placeholder="관리자 비밀번호"
              onkeydown="if(event.key==='Enter')checkPw()" />
-      <button class="pw-btn" onclick="checkPw()">확인</button>
+      <button class="pw-ok" onclick="checkPw()">확인</button>
     </div>
     <div class="result-area" id="resultArea">
       <div class="stat-row" id="statRow"></div>
       <div class="score-grid" id="scoreGrid"></div>
       <div class="chart-block">
-        <div class="chart-label">🎭 프로그램별 참여 현황</div>
+        <div class="a-chart-lbl">🎭 프로그램별 참여</div>
         <div id="progChart"></div>
       </div>
       <div class="chart-block">
-        <div class="chart-label">👤 참여자 구분</div>
+        <div class="a-chart-lbl">👤 참여자 구분</div>
         <div id="typeChart"></div>
       </div>
-      <div class="chart-label" style="margin-top:4px;">📋 전체 응답 목록</div>
+      <div class="a-chart-lbl" style="margin-top:4px;">📋 전체 응답 목록</div>
       <div class="tbl-scroll"><div id="respTable"></div></div>
       <div class="admin-btns">
-        <button class="xl-btn" onclick="downloadExcel()">📊 엑셀 다운로드 (3시트)</button>
+        <button class="xl-btn" onclick="dlExcel()">📊 엑셀 다운로드 (3시트)</button>
         <button class="clr-btn" onclick="clearAll()">🗑️ 전체 초기화</button>
       </div>
     </div>
@@ -433,8 +385,8 @@
 <footer>© 2026 동구보건소 | 어린이 구강보건 프로그램 | 문의: 052-209-6937</footer>
 
 <script>
-  /* ════ 상수 ════ */
-  const KEY     = 'donggu_survey_v1';
+  /* ════ 데이터 ════ */
+  const KEY      = 'donggu_survey_v2';
   const ADMIN_PW = '4081';
 
   const SAT_Q = [
@@ -444,15 +396,13 @@
     '프로그램 시간 구성이 적절하였습니까?',
     '전반적으로 이 프로그램에 만족하십니까?',
   ];
-
   const COMP_Q = [
-    '프로그램 참여 후 어린이의 구강건강에 대한 관심이 높아졌습니까?',
-    '프로그램 참여 후 어린이의 올바른 칫솔질 방법 이해가 향상되었습니까?',
-    '프로그램 참여 후 어린이의 구강위생 관리 습관이 개선되었습니까?',
-    '프로그램이 어린이 구강건강 증진에 전반적으로 도움이 되었습니까?',
+    '프로그램 참여 후 어린이의 구강건강 관심이 높아졌습니까?',
+    '프로그램 참여 후 어린이의 올바른 칫솔질 이해가 향상되었습니까?',
+    '프로그램 참여 후 어린이의 구강위생 습관이 개선되었습니까?',
+    '전반적으로 어린이 구강관리에 도움이 되었습니까?',
   ];
-
-  const LIKERT = [
+  const LBLS = [
     {n:'1', t:'매우\n그렇지않다'},
     {n:'2', t:'그렇지\n않다'},
     {n:'3', t:'보통'},
@@ -460,133 +410,87 @@
     {n:'5', t:'매우\n그렇다'},
   ];
 
-  /* ════ 상태 ════ */
-  let state = { prog: '', type: '', sat: {}, comp: {}, opinion: '' };
-  let curStep = 1;
+  let ans = { prog:'', type:'', sat:{}, comp:{}, opinion:'' };
 
-  /* ════ 문항 생성 ════ */
-  function buildQuestions(containerId, questions, prefix) {
-    const wrap = document.getElementById(containerId);
-    wrap.innerHTML = questions.map((q, i) => `
-      <div class="q-block">
-        <div class="q-num">문항 ${i+1}</div>
-        <div class="q-text">${q}</div>
+  /* ════ 문항 렌더 ════ */
+  function buildQ(wrapId, questions, prefix) {
+    document.getElementById(wrapId).innerHTML = questions.map((q, i) => `
+      <div class="q-item">
+        <div class="q-label">
+          <span class="q-no">${i+1}</span>
+          <span>${q}</span>
+        </div>
         <div class="likert" id="${prefix}_${i}">
-          ${LIKERT.map(l => `
-            <div class="likert-btn" onclick="selectLikert('${prefix}',${i},${l.n})" id="${prefix}_${i}_${l.n}">
-              <span class="l-num">${l.n}</span>
-              <span class="l-txt">${l.t}</span>
+          ${LBLS.map(l => `
+            <div class="l-btn" id="${prefix}_${i}_${l.n}" onclick="pickL('${prefix}',${i},${l.n})">
+              <span class="ln">${l.n}</span>
+              <span class="lt">${l.t}</span>
             </div>`).join('')}
         </div>
       </div>`).join('');
   }
-  buildQuestions('sat-questions', SAT_Q, 'sat');
-  buildQuestions('comp-questions', COMP_Q, 'comp');
+  buildQ('satWrap',  SAT_Q,  'sat');
+  buildQ('compWrap', COMP_Q, 'comp');
 
-  /* ════ 리커트 선택 ════ */
-  function selectLikert(prefix, qIdx, val) {
-    const group = prefix === 'sat' ? state.sat : state.comp;
-    group[qIdx] = val;
+  /* ════ 선택 ════ */
+  function pickL(prefix, qi, val) {
+    (prefix === 'sat' ? ans.sat : ans.comp)[qi] = val;
     for (let v = 1; v <= 5; v++) {
-      const el = document.getElementById(`${prefix}_${qIdx}_${v}`);
-      if (el) el.classList.toggle('selected', v === val);
+      const el = document.getElementById(`${prefix}_${qi}_${v}`);
+      if (el) el.classList.toggle('sel', v === val);
     }
   }
-
-  /* ════ 프로그램 선택 ════ */
-  function selectProg(val) {
-    state.prog = val;
-    document.getElementById('prog1').classList.toggle('selected', val === 'A');
-    document.getElementById('prog2').classList.toggle('selected', val === 'B');
+  function selProg(v) {
+    ans.prog = v;
+    document.getElementById('pA').classList.toggle('sel', v === 'A');
+    document.getElementById('pB').classList.toggle('sel', v === 'B');
   }
-
-  /* ════ 참여자 구분 선택 ════ */
-  function selectType(val) {
-    state.type = val;
-    ['교사','학부모','기타'].forEach((t, i) => {
-      document.getElementById('type' + (i+1)).classList.toggle('selected', t === val);
-    });
-  }
-
-  /* ════ 의견 글자수 ════ */
-  document.getElementById('opinionText').addEventListener('input', function () {
-    document.getElementById('opinionCount').textContent = this.value.length;
-    state.opinion = this.value;
-  });
-
-  /* ════ 단계 이동 ════ */
-  function goStep(n) {
-    if (n === 2) {
-      if (!state.prog) return alert('참여 프로그램을 선택해주세요.');
-      if (!state.type) return alert('참여자 구분을 선택해주세요.');
-    }
-    if (n === 3) {
-      const missing = SAT_Q.findIndex((_, i) => !state.sat[i]);
-      if (missing >= 0) return alert(`만족도 ${missing+1}번 문항을 선택해주세요.`);
-    }
-    if (n === 4) {
-      const missing = COMP_Q.findIndex((_, i) => !state.comp[i]);
-      if (missing >= 0) return alert(`사전·사후 비교 ${missing+1}번 문항을 선택해주세요.`);
-    }
-    document.getElementById('step' + curStep).classList.remove('active');
-    document.getElementById('step' + n).classList.add('active');
-    curStep = n;
-    updateProgress(n);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function updateProgress(step) {
-    const pct = [25, 50, 75, 100];
-    document.getElementById('progressBar').style.width = pct[step - 1] + '%';
-    for (let i = 1; i <= 4; i++) {
-      document.getElementById('sl' + i).classList.toggle('active', i === step);
-    }
+  function selType(v) {
+    ans.type = v;
+    ['교사','학부모','기타'].forEach((t, i) =>
+      document.getElementById('t'+(i+1)).classList.toggle('sel', t === v));
   }
 
   /* ════ 제출 ════ */
-  function submitSurvey() {
-    state.opinion = document.getElementById('opinionText').value;
-    const record = {
+  function submit() {
+    if (!ans.prog) return alert('참여 프로그램을 선택해주세요.');
+    if (!ans.type) return alert('참여자 구분을 선택해주세요.');
+    const sm = SAT_Q.findIndex((_, i) => !ans.sat[i]);
+    if (sm >= 0) return alert(`만족도 ${sm+1}번 문항을 선택해주세요.`);
+    const cm = COMP_Q.findIndex((_, i) => !ans.comp[i]);
+    if (cm >= 0) return alert(`사전·사후 비교 ${cm+1}번 문항을 선택해주세요.`);
+
+    ans.opinion = document.getElementById('opinionTxt').value;
+    const rec = {
       id: Date.now(),
       date: nowStr(),
-      prog: state.prog === 'A' ? '구강연극' : '구강보건교육',
-      type: state.type,
-      sat: { ...state.sat },
-      comp: { ...state.comp },
-      opinion: state.opinion,
-      satAvg: avg(state.sat, SAT_Q.length),
-      compAvg: avg(state.comp, COMP_Q.length),
+      prog: ans.prog === 'A' ? '구강연극' : '구강보건교육',
+      type: ans.type,
+      sat:  {...ans.sat},
+      comp: {...ans.comp},
+      opinion: ans.opinion,
+      satAvg:  avg(ans.sat,  SAT_Q.length),
+      compAvg: avg(ans.comp, COMP_Q.length),
     };
-    const list = getList();
-    list.push(record);
-    saveList(list);
+    const list = getList(); list.push(rec); saveList(list);
 
-    document.getElementById('step4').classList.remove('active');
-    document.getElementById('stepDone').classList.add('active');
-    curStep = 5;
-    document.getElementById('progressBar').style.width = '100%';
+    document.getElementById('surveyMain').style.display = 'none';
+    document.getElementById('doneWrap').classList.add('show');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   /* ════ 초기화 ════ */
-  function resetSurvey() {
-    state = { prog: '', type: '', sat: {}, comp: {}, opinion: '' };
-    document.getElementById('opinionText').value = '';
-    document.getElementById('opinionCount').textContent = '0';
-    ['prog1','prog2'].forEach(id => document.getElementById(id).classList.remove('selected'));
-    ['type1','type2','type3'].forEach(id => document.getElementById(id).classList.remove('selected'));
-    document.querySelectorAll('.likert-btn').forEach(el => el.classList.remove('selected'));
-    document.getElementById('stepDone').classList.remove('active');
-    document.getElementById('step1').classList.add('active');
-    curStep = 1;
-    updateProgress(1);
+  function reset() {
+    ans = { prog:'', type:'', sat:{}, comp:{}, opinion:'' };
+    document.getElementById('opinionTxt').value = '';
+    document.querySelectorAll('.prog-btn, .type-btn, .l-btn').forEach(el => el.classList.remove('sel'));
+    document.getElementById('doneWrap').classList.remove('show');
+    document.getElementById('surveyMain').style.display = 'block';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   /* ════ 관리자 ════ */
-  function toggleAdmin() {
-    document.getElementById('adminPanel').classList.toggle('open');
-  }
+  function toggleAdmin() { document.getElementById('adminPanel').classList.toggle('open'); }
 
   function checkPw() {
     if (document.getElementById('pwInput').value === ADMIN_PW) {
@@ -600,226 +504,158 @@
 
   function renderAdmin() {
     const list = getList();
-    renderStats(list);
-    renderScoreGrid(list);
-    renderProgChart(list);
-    renderTypeChart(list);
-    renderTable(list);
-  }
-
-  function renderStats(list) {
-    const satA = list.length ? (list.reduce((s, r) => s + r.satAvg, 0) / list.length).toFixed(2) : '-';
-    const compA = list.length ? (list.reduce((s, r) => s + r.compAvg, 0) / list.length).toFixed(2) : '-';
+    // 통계 카드
+    const sA = list.length ? (list.reduce((s,r)=>s+parseFloat(r.satAvg),0)/list.length).toFixed(2) : '-';
+    const cA = list.length ? (list.reduce((s,r)=>s+parseFloat(r.compAvg),0)/list.length).toFixed(2) : '-';
     document.getElementById('statRow').innerHTML = `
-      <div class="stat-box"><div class="si">📝</div><div class="sv">${list.length}</div><div class="sl">총 응답 수</div></div>
-      <div class="stat-box"><div class="si">⭐</div><div class="sv">${satA}</div><div class="sl">만족도 평균</div></div>
-      <div class="stat-box"><div class="si">📈</div><div class="sv">${compA}</div><div class="sl">도움도 평균</div></div>`;
-  }
+      <div class="stat-box"><div class="si">📝</div><div class="sv">${list.length}</div><div class="sl">총 응답</div></div>
+      <div class="stat-box"><div class="si">⭐</div><div class="sv">${sA}</div><div class="sl">만족도 평균</div></div>
+      <div class="stat-box"><div class="si">📈</div><div class="sv">${cA}</div><div class="sl">도움도 평균</div></div>`;
 
-  function renderScoreGrid(list) {
-    if (!list.length) { document.getElementById('scoreGrid').innerHTML = ''; return; }
-    const satScores = SAT_Q.map((q, i) => {
-      const vals = list.map(r => r.sat[i] || 0).filter(v => v > 0);
-      return vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2) : '-';
-    });
-    const compScores = COMP_Q.map((q, i) => {
-      const vals = list.map(r => r.comp[i] || 0).filter(v => v > 0);
-      return vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2) : '-';
-    });
+    // 문항별 평균
     const satShort = ['내용 유익성','흥미·재미','강사 전달력','시간 구성','전반적 만족'];
-    const compShort = ['관심도 향상','칫솔질 이해','위생습관 개선','전반적 도움'];
-    document.getElementById('scoreGrid').innerHTML =
-      [...satShort.map((l,i)=>`<div class="score-card"><div class="sc-lbl">만족도 ${i+1}: ${l}</div><div class="sc-val">${satScores[i]} <span class="sc-max">/5점</span></div></div>`),
-       ...compShort.map((l,i)=>`<div class="score-card"><div class="sc-lbl">사후 ${i+1}: ${l}</div><div class="sc-val">${compScores[i]} <span class="sc-max">/5점</span></div></div>`)
-      ].join('');
-  }
+    const compShort= ['관심도 향상','칫솔질 이해','위생습관 개선','전반적 도움'];
+    const satAvgs  = SAT_Q.map((_, i) => qAvg(list, 'sat', i));
+    const compAvgs = COMP_Q.map((_, i) => qAvg(list, 'comp', i));
+    document.getElementById('scoreGrid').innerHTML = [
+      ...satShort.map((l,i)  => `<div class="score-card"><div class="sc-l">만족도${i+1}: ${l}</div><div class="sc-v">${satAvgs[i]}<span class="sc-m"> /5점</span></div></div>`),
+      ...compShort.map((l,i) => `<div class="score-card"><div class="sc-l">사후${i+1}: ${l}</div><div class="sc-v">${compAvgs[i]}<span class="sc-m"> /5점</span></div></div>`),
+    ].join('');
 
-  function renderProgChart(list) {
-    const a = list.filter(r => r.prog === '구강연극').length;
-    const b = list.filter(r => r.prog === '구강보건교육').length;
-    const max = Math.max(a, b, 1);
-    document.getElementById('progChart').innerHTML = [
-      ['🎭 구강연극', a],
-      ['🏥 구강보건교육', b],
-    ].map(([lbl, cnt]) => `
-      <div class="bar-row2">
-        <div class="bar-lbl2">${lbl}</div>
-        <div class="bar-trk2"><div class="bar-fil2" style="width:${Math.round(cnt/max*100)}%"><span>${cnt}명</span></div></div>
-        <div class="bar-cnt2">${cnt}</div>
-      </div>`).join('');
-  }
+    // 차트
+    const pA = list.filter(r=>r.prog==='구강연극').length;
+    const pB = list.filter(r=>r.prog==='구강보건교육').length;
+    const maxP = Math.max(pA, pB, 1);
+    document.getElementById('progChart').innerHTML = [['🎭 구강연극', pA],['🏥 구강보건교육', pB]].map(([l,c])=>`
+      <div class="br2"><div class="bl2">${l}</div>
+      <div class="bt2"><div class="bf2" style="width:${Math.round(c/maxP*100)}%"><span>${c}명</span></div></div>
+      <div class="bc2">${c}</div></div>`).join('');
 
-  function renderTypeChart(list) {
     const types = ['교사','학부모','기타'];
-    const counts = types.map(t => list.filter(r => r.type === t).length);
-    const max = Math.max(...counts, 1);
-    document.getElementById('typeChart').innerHTML = types.map((t, i) => `
-      <div class="bar-row2">
-        <div class="bar-lbl2">${t}</div>
-        <div class="bar-trk2"><div class="bar-fil2" style="width:${Math.round(counts[i]/max*100)}%"><span>${counts[i]}명</span></div></div>
-        <div class="bar-cnt2">${counts[i]}</div>
-      </div>`).join('');
-  }
+    const tc = types.map(t=>list.filter(r=>r.type===t).length);
+    const maxT = Math.max(...tc, 1);
+    document.getElementById('typeChart').innerHTML = types.map((t,i)=>`
+      <div class="br2"><div class="bl2">${t}</div>
+      <div class="bt2"><div class="bf2" style="width:${Math.round(tc[i]/maxT*100)}%"><span>${tc[i]}명</span></div></div>
+      <div class="bc2">${tc[i]}</div></div>`).join('');
 
-  function renderTable(list) {
+    // 테이블
     const wrap = document.getElementById('respTable');
     if (!list.length) { wrap.innerHTML = '<div class="no-data">응답이 없습니다.</div>'; return; }
-    const satHdr = SAT_Q.map((_, i) => `<th>만족${i+1}</th>`).join('');
-    const compHdr = COMP_Q.map((_, i) => `<th>사후${i+1}</th>`).join('');
-    wrap.innerHTML = `
-      <table class="resp-table">
-        <thead><tr>
-          <th>번호</th><th>일시</th><th>프로그램</th><th>구분</th>
-          ${satHdr}${compHdr}
-          <th>만족평균</th><th>사후평균</th><th>의견</th><th>삭제</th>
-        </tr></thead>
-        <tbody>${list.map((r, i) => `
-          <tr>
-            <td>${i+1}</td>
-            <td>${r.date}</td>
-            <td>${esc(r.prog)}</td>
-            <td>${esc(r.type)}</td>
-            ${SAT_Q.map((_, j) => `<td>${r.sat[j]||'-'}</td>`).join('')}
-            ${COMP_Q.map((_, j) => `<td>${r.comp[j]||'-'}</td>`).join('')}
-            <td>${r.satAvg}</td>
-            <td>${r.compAvg}</td>
-            <td style="max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"
-                title="${esc(r.opinion)}">${esc(r.opinion||'-')}</td>
-            <td><button class="del-btn" onclick="delOne(${r.id})">삭제</button></td>
-          </tr>`).join('')}
-        </tbody>
-      </table>`;
+    wrap.innerHTML = `<table class="rt">
+      <thead><tr>
+        <th>번호</th><th>일시</th><th>프로그램</th><th>구분</th>
+        ${SAT_Q.map((_,i)=>`<th>만족${i+1}</th>`).join('')}
+        ${COMP_Q.map((_,i)=>`<th>사후${i+1}</th>`).join('')}
+        <th>만족평균</th><th>사후평균</th><th>의견</th><th>삭제</th>
+      </tr></thead>
+      <tbody>${list.map((r,i)=>`<tr>
+        <td>${i+1}</td><td>${r.date}</td><td>${esc(r.prog)}</td><td>${esc(r.type)}</td>
+        ${SAT_Q.map((_,j)=>`<td>${r.sat[j]||'-'}</td>`).join('')}
+        ${COMP_Q.map((_,j)=>`<td>${r.comp[j]||'-'}</td>`).join('')}
+        <td>${r.satAvg}</td><td>${r.compAvg}</td>
+        <td style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${esc(r.opinion)}">${esc(r.opinion||'-')}</td>
+        <td><button class="del-btn" onclick="delOne(${r.id})">삭제</button></td>
+      </tr>`).join('')}</tbody></table>`;
   }
 
   function delOne(id) {
     if (!confirm('삭제하시겠습니까?')) return;
-    saveList(getList().filter(r => r.id !== id));
-    renderAdmin();
+    saveList(getList().filter(r=>r.id!==id)); renderAdmin();
   }
-
   function clearAll() {
-    if (!confirm('전체 응답을 초기화하시겠습니까?\n이 작업은 되돌릴 수 없습니다.')) return;
-    saveList([]);
-    renderAdmin();
+    if (!confirm('전체 응답을 초기화하시겠습니까?')) return;
+    saveList([]); renderAdmin();
   }
 
-  /* ════ 엑셀 다운로드 (3시트) ════ */
-  function downloadExcel() {
+  /* ════ 엑셀 3시트 ════ */
+  function dlExcel() {
     const list = getList();
     const wb   = XLSX.utils.book_new();
 
-    /* Sheet 1: 전체응답 */
-    const satHdr = SAT_Q.map((_, i) => `만족도${i+1}`);
-    const compHdr = COMP_Q.map((_, i) => `사후비교${i+1}`);
+    const sHdr = SAT_Q.map((_,i)=>`만족도${i+1}`);
+    const cHdr = COMP_Q.map((_,i)=>`사후비교${i+1}`);
+
+    // Sheet1: 전체응답
     const s1 = [
-      ['동구보건소 어린이 구강보건 프로그램 만족도 조사 - 전체 응답'],
-      [],
-      ['번호','응답일시','프로그램','참여자구분',
-       ...satHdr, '만족도평균', ...compHdr, '사후평균', '자유의견'],
-      ...list.map((r, i) => [
-        i+1, r.date, r.prog, r.type,
-        ...SAT_Q.map((_, j) => r.sat[j] || ''),
-        r.satAvg,
-        ...COMP_Q.map((_, j) => r.comp[j] || ''),
-        r.compAvg,
-        r.opinion || '',
-      ]),
+      ['동구보건소 어린이 구강보건 프로그램 만족도 조사 - 전체 응답'], [],
+      ['번호','응답일시','프로그램','참여자구분',...sHdr,'만족도평균',...cHdr,'사후평균','자유의견'],
+      ...list.map((r,i)=>[i+1,r.date,r.prog,r.type,
+        ...SAT_Q.map((_,j)=>r.sat[j]||''), r.satAvg,
+        ...COMP_Q.map((_,j)=>r.comp[j]||''), r.compAvg, r.opinion||'']),
     ];
-    if (!list.length) s1.push(['', '(응답 없음)']);
+    if (!list.length) s1.push(['','(응답 없음)']);
     const ws1 = XLSX.utils.aoa_to_sheet(s1);
-    ws1['!cols'] = [
-      {wch:5},{wch:18},{wch:14},{wch:10},
-      ...SAT_Q.map(()=>({wch:8})), {wch:10},
-      ...COMP_Q.map(()=>({wch:8})), {wch:10}, {wch:30},
-    ];
+    ws1['!cols'] = [{wch:5},{wch:18},{wch:14},{wch:10},...SAT_Q.map(()=>({wch:8})),{wch:10},...COMP_Q.map(()=>({wch:8})),{wch:10},{wch:30}];
     XLSX.utils.book_append_sheet(wb, ws1, '전체응답');
 
-    /* Sheet 2: 요약통계 */
-    const satAvgs = SAT_Q.map((q, i) => {
-      const vals = list.map(r => Number(r.sat[i])).filter(v => v > 0);
-      return vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2) : '-';
-    });
-    const compAvgs = COMP_Q.map((q, i) => {
-      const vals = list.map(r => Number(r.comp[i])).filter(v => v > 0);
-      return vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2) : '-';
-    });
-    const pA = list.filter(r=>r.prog==='구강연극').length;
-    const pB = list.filter(r=>r.prog==='구강보건교육').length;
-    const tCnts = ['교사','학부모','기타'].map(t=>list.filter(r=>r.type===t).length);
-    const s2 = [
-      ['동구보건소 어린이 구강보건 프로그램 만족도 조사 - 요약통계'],
-      [],
+    // Sheet2: 요약통계
+    const sAvgs = SAT_Q.map((_,i)=>qAvg(list,'sat',i));
+    const cAvgs = COMP_Q.map((_,i)=>qAvg(list,'comp',i));
+    const pA=list.filter(r=>r.prog==='구강연극').length;
+    const pB=list.filter(r=>r.prog==='구강보건교육').length;
+    const tc=['교사','학부모','기타'].map(t=>list.filter(r=>r.type===t).length);
+    const s2=[
+      ['동구보건소 어린이 구강보건 프로그램 만족도 조사 - 요약통계'],[],
       ['▶ 기본 현황'],
-      ['총 응답 수', list.length+'명'],
-      ['구강연극 참여', pA+'명'],
-      ['구강보건교육 참여', pB+'명'],
-      ['교사', tCnts[0]+'명'],
-      ['학부모', tCnts[1]+'명'],
-      ['기타', tCnts[2]+'명'],
-      [],
-      ['▶ 만족도 문항별 평균 (5점 만점)'],
-      ['문항','내용','평균점수'],
-      ...SAT_Q.map((q, i) => [`만족도${i+1}`, q, satAvgs[i]]),
-      ['전체 만족도 평균', '', list.length ? (list.reduce((s,r)=>s+r.satAvg,0)/list.length).toFixed(2) : '-'],
-      [],
-      ['▶ 사전·사후 비교 문항별 평균 (5점 만점)'],
-      ['문항','내용','평균점수'],
-      ...COMP_Q.map((q, i) => [`사후비교${i+1}`, q, compAvgs[i]]),
-      ['전체 도움도 평균', '', list.length ? (list.reduce((s,r)=>s+r.compAvg,0)/list.length).toFixed(2) : '-'],
+      ['총 응답 수',list.length+'명'],['구강연극',pA+'명'],['구강보건교육',pB+'명'],
+      ['교사',tc[0]+'명'],['학부모',tc[1]+'명'],['기타',tc[2]+'명'],[],
+      ['▶ 만족도 문항별 평균 (5점 만점)'],['문항','내용','평균'],
+      ...SAT_Q.map((q,i)=>[`만족도${i+1}`,q,sAvgs[i]]),
+      ['전체 만족도 평균','',list.length?(list.reduce((s,r)=>s+parseFloat(r.satAvg),0)/list.length).toFixed(2):'-'],[],
+      ['▶ 사전·사후 비교 문항별 평균 (5점 만점)'],['문항','내용','평균'],
+      ...COMP_Q.map((q,i)=>[`사후비교${i+1}`,q,cAvgs[i]]),
+      ['전체 도움도 평균','',list.length?(list.reduce((s,r)=>s+parseFloat(r.compAvg),0)/list.length).toFixed(2):'-'],
     ];
-    const ws2 = XLSX.utils.aoa_to_sheet(s2);
-    ws2['!cols'] = [{wch:18},{wch:40},{wch:12}];
-    XLSX.utils.book_append_sheet(wb, ws2, '요약통계');
+    const ws2=XLSX.utils.aoa_to_sheet(s2);
+    ws2['!cols']=[{wch:18},{wch:40},{wch:12}];
+    XLSX.utils.book_append_sheet(wb,ws2,'요약통계');
 
-    /* Sheet 3: 시각화데이터 */
-    const BAR = (n, mx) => '█'.repeat(Math.round(n/mx*15)) + ' ' + n + '명';
-    const maxProg = Math.max(pA, pB, 1);
-    const maxType = Math.max(...tCnts, 1);
-    const s3 = [
+    // Sheet3: 시각화
+    const BAR=(n,mx)=>'█'.repeat(Math.round(n/mx*15))+' '+n+'명';
+    const maxP=Math.max(pA,pB,1), maxT=Math.max(...tc,1);
+    const opinions=list.filter(r=>r.opinion);
+    const s3=[
       ['동구보건소 어린이 구강보건 프로그램 만족도 조사 - 시각화 데이터'],
-      ['※ 데이터 선택 후 [삽입 → 차트]로 Excel 차트를 만들 수 있습니다.'],
+      ['※ 데이터 선택 후 [삽입→차트]로 Excel 차트 생성 가능'],[],
+      ['■ 프로그램별 참여'],['프로그램','인원','막대'],
+      ['구강연극',pA,BAR(pA,maxP)],['구강보건교육',pB,BAR(pB,maxP)],[],
+      ['■ 참여자 구분'],['구분','인원','막대'],
+      ...['교사','학부모','기타'].map((t,i)=>[t,tc[i],BAR(tc[i],maxT)]),
       [],
-      ['■ 프로그램별 참여 현황'],
-      ['프로그램','인원','막대'],
-      ['구강연극 프로그램', pA, BAR(pA, maxProg)],
-      ['구강보건교육 프로그램', pB, BAR(pB, maxProg)],
+      ['■ 만족도 문항별 평균'],['문항','평균'],
+      ...SAT_Q.map((q,i)=>[q,sAvgs[i]]),
       [],
-      ['■ 참여자 구분'],
-      ['구분','인원','막대'],
-      ...['교사','학부모','기타'].map((t,i) => [t, tCnts[i], BAR(tCnts[i], maxType)]),
+      ['■ 사전사후 비교 문항별 평균'],['문항','평균'],
+      ...COMP_Q.map((q,i)=>[q,cAvgs[i]]),
       [],
-      ['■ 만족도 문항별 평균'],
-      ['문항','평균점수'],
-      ...SAT_Q.map((q, i) => [q, satAvgs[i]]),
-      [],
-      ['■ 사전·사후 비교 문항별 평균'],
-      ['문항','평균점수'],
-      ...COMP_Q.map((q, i) => [q, compAvgs[i]]),
-      [],
-      ['■ 자유 의견 목록'],
-      ['번호','프로그램','구분','의견'],
-      ...list.filter(r => r.opinion).map((r, i) => [i+1, r.prog, r.type, r.opinion]),
+      ['■ 자유 의견'],['번호','프로그램','구분','의견'],
+      ...opinions.map((r,i)=>[i+1,r.prog,r.type,r.opinion]),
     ];
-    const ws3 = XLSX.utils.aoa_to_sheet(s3);
-    ws3['!cols'] = [{wch:30},{wch:12},{wch:25}];
-    XLSX.utils.book_append_sheet(wb, ws3, '시각화데이터');
+    const ws3=XLSX.utils.aoa_to_sheet(s3);
+    ws3['!cols']=[{wch:30},{wch:12},{wch:25}];
+    XLSX.utils.book_append_sheet(wb,ws3,'시각화데이터');
 
-    XLSX.writeFile(wb, `동구보건소_구강보건설문_${nowKey()}.xlsx`);
+    XLSX.writeFile(wb,`동구보건소_구강보건설문_${nowKey()}.xlsx`);
   }
 
   /* ════ 헬퍼 ════ */
-  function getList()      { return JSON.parse(localStorage.getItem(KEY) || '[]'); }
-  function saveList(list) { localStorage.setItem(KEY, JSON.stringify(list)); }
+  function getList()      { return JSON.parse(localStorage.getItem(KEY)||'[]'); }
+  function saveList(l)    { localStorage.setItem(KEY, JSON.stringify(l)); }
   function avg(obj, len) {
-    const vals = Array.from({length: len}, (_, i) => Number(obj[i] || 0)).filter(v => v > 0);
-    return vals.length ? (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(2) : 0;
+    const v=Array.from({length:len},(_,i)=>Number(obj[i]||0)).filter(x=>x>0);
+    return v.length?(v.reduce((a,b)=>a+b,0)/v.length).toFixed(2):0;
+  }
+  function qAvg(list, key, i) {
+    const v=list.map(r=>Number(r[key][i]||0)).filter(x=>x>0);
+    return v.length?(v.reduce((a,b)=>a+b,0)/v.length).toFixed(2):'-';
   }
   function nowStr() {
-    const d = new Date();
+    const d=new Date();
     return `${d.getFullYear()}.${z(d.getMonth()+1)}.${z(d.getDate())} ${z(d.getHours())}:${z(d.getMinutes())}`;
   }
   function nowKey() {
-    const d = new Date();
+    const d=new Date();
     return `${d.getFullYear()}${z(d.getMonth()+1)}${z(d.getDate())}`;
   }
   function z(n) { return String(n).padStart(2,'0'); }
